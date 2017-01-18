@@ -1,0 +1,24 @@
+.belgian-ale {
+  background-color: #EFF152;
+}
+
+.red-ale {
+  background-color: red;
+}
+
+.lager {
+  background-color: #F1C352;
+}
+
+.stout {
+  background-color: #6A4C02;
+  color: white;
+}
+
+.ipa {
+  background-color: #F79200;
+}
+
+.other {
+  background-color: #5AF700;
+}
