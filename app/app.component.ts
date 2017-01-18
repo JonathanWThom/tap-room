@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
     <h1>Tap Room</h1>
-    <keg-list></keg-list>
+    <keg-list [childKegList]="masterKegList"></keg-list>
     <hr>
     <div class="edit" *ngIf="selectedKeg">
       <h2>Edit Keg</h2>
@@ -27,6 +27,14 @@ import { Keg } from './keg.model';
 })
 
 export class AppComponent {
+
+  masterKegList: Keg[] = [
+    new Keg('Wanderale', 'Wander Brewing', 5, 6, 'Belgian Ale'),
+    new Keg('Kulshan Red Ale', 'Kulshan Brewing', 5, 5, 'Red Ale'),
+    new Keg('Budweiser', 'Budweiser', 3, 2.5, 'Lager'),
+    new Keg('Guiness', 'Guiness', 6, 6, 'Stout'),
+    new Keg('Racer Five IPA', 'Racer 5', 5, 6.5, 'IPA')
+  ];
 
   selectedKeg = null;
 

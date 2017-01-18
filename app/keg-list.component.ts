@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Keg } from './keg.model';
 
 @Component({
   selector: 'keg-list',
   template: `
-  <div *ngFor="let currentKeg of kegs" [class]="styleColor(currentKeg)">
+  <div *ngFor="let currentKeg of childKegList" [class]="styleColor(currentKeg)">
     <h5>Name: {{currentKeg.name}}</h5>
     <h5>Brand: {{currentKeg.brand}}</h5>
     <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
@@ -31,13 +31,8 @@ import { Keg } from './keg.model';
 })
 
 export class KegListComponent {
-  kegs: Keg[] = [
-    new Keg('Wanderale', 'Wander Brewing', 5, 6, 'Belgian Ale'),
-    new Keg('Kulshan Red Ale', 'Kulshan Brewing', 5, 5, 'Red Ale'),
-    new Keg('Budweiser', 'Budweiser', 3, 2.5, 'Lager'),
-    new Keg('Guiness', 'Guiness', 6, 6, 'Stout'),
-    new Keg('Racer Five IPA', 'Racer 5', 5, 6.5, 'IPA')
-  ];
+  @Input() childKegList: Keg[];
+
 
   onSale(currentKeg) {
     currentKeg.onSale = true;
@@ -50,7 +45,7 @@ export class KegListComponent {
   }
 
   happyHour() {
-    for (let keg of this.kegs) {
+    for (let keg of this.childKegList) {
       if (keg.onSale === false) {
         keg.onSale = true;
         keg.price *= 0.8;
