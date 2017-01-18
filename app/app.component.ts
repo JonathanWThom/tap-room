@@ -22,6 +22,7 @@ import { Component } from '@angular/core';
       <h1>!!!</h1>
       </div>
     </div>
+    <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
     <hr>
     <h2>Low Kegs</h2>
     <div *ngFor="let currentKeg of kegs">
@@ -72,6 +73,18 @@ export class AppComponent {
   offSale(currentKeg) {
     currentKeg.onSale = false;
     currentKeg.price *= 1.25;
+  }
+
+  happyHour() {
+    for (let keg of this.kegs) {
+      if (keg.onSale === false) {
+        keg.onSale = true;
+        keg.price *= 0.8;
+      } else {
+        keg.onSale = false;
+        keg.price *= 1.25;
+      }
+    }
   }
 
   finishedEditing() {
