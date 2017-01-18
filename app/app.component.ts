@@ -16,6 +16,11 @@ import { Component } from '@angular/core';
       <button class="btn btn-success" (click)="buyPint(currentKeg)">Buy a Pint</button>
     </div>
     <hr>
+    <h2>Low Kegs</h2>
+    <div *ngFor="let currentKeg of kegs">
+      <h5 *ngIf="currentKeg.pints < 10">{{currentKeg.name}}. Pints remaining: {{currentKeg.pints}}</h5>
+    </div>
+    <hr>
     <div class="edit" *ngIf="selectedKeg">
       <h2>Edit Keg</h2>
       <label>Name</label>
