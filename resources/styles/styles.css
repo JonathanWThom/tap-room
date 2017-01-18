@@ -1,29 +1,36 @@
 .belgian-ale {
   background-color: #EFF152;
+  height: 450px;
 }
 
 .red-ale {
   background-color: red;
+  height: 450px;
 }
 
 .lager {
   background-color: #F1C352;
+  height: 450px;
 }
 
 .stout {
   background-color: #6A4C02;
   color: white;
+  height: 450px;
 }
 
 .ipa {
   background-color: #F79200;
+  height: 450px;
 }
 
 .other {
   background-color: #5AF700;
+  height: 450px;
 }
 
 .sale {
   background-color: green;
   border: 3px solid darkgreen;
+  height: 450px;
 }

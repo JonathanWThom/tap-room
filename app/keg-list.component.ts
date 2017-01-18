@@ -4,21 +4,23 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <div *ngFor="let currentKeg of childKegList" [class]="styleColor(currentKeg)">
-    <h5>Name: {{currentKeg.name}}</h5>
-    <h5>Brand: {{currentKeg.brand}}</h5>
-    <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
-    <h5>Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
-    <h5>Style: {{currentKeg.style}}</h5>
-    <h5>Pints Remaining: {{currentKeg.pints}}</h5>
-    <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
-    <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
-    <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
-    <button class="btn btn-warning" (click)="sellBigGrowler(currentKeg)">Sell a Big Growler</button>
-    <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
-    <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
-    <div *ngIf="currentKeg.alcoholContent >= 5">
-    <h1>!!!</h1>
+  <div class="row">
+    <div *ngFor="let currentKeg of childKegList" [class]="styleColor(currentKeg)" [ngClass]="'col-sm-4'">
+      <h5>Name: {{currentKeg.name}}</h5>
+      <h5>Brand: {{currentKeg.brand}}</h5>
+      <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
+      <h5>Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
+      <h5>Style: {{currentKeg.style}}</h5>
+      <h5>Pints Remaining: {{currentKeg.pints}}</h5>
+      <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
+      <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
+      <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
+      <button class="btn btn-warning" (click)="sellBigGrowler(currentKeg)">Sell a Big Growler</button>
+      <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
+      <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
+      <div *ngIf="currentKeg.alcoholContent >= 5">
+      <h1>!!!</h1>
+      </div>
     </div>
   </div>
   <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
