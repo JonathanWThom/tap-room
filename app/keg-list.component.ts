@@ -4,8 +4,18 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
+  <label>Filter By</label>
+  <select (change)="onChange($event.target.value)">
+    <option value="allStyles" selected="selected">All Styles</option>
+    <option value="Belgian Ale">Belgian Ale</option>
+    <option value="Red Ale">Red Ale</option>
+    <option value="Lager">Lager</option>
+    <option value="Stout">Stout</option>
+    <option value="IPA">IPA</option>
+    <option value="Other">Other</option>
+  </select>
   <div class="row">
-    <div *ngFor="let currentKeg of childKegList" [class]="styleColor(currentKeg)" [ngClass]="'col-sm-4'">
+    <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="'col-sm-4'">
       <h5>Name: {{currentKeg.name}}</h5>
       <h5>Brand: {{currentKeg.brand}}</h5>
       <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
@@ -38,6 +48,12 @@ export class KegListComponent {
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
+  }
+
+  filterByStyle: string = "allStyles";
+
+  onChange(optionFromMenu) {
+    this.filterByStyle = optionFromMenu;
   }
 
   onSale(currentKeg) {
