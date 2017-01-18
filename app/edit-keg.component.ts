@@ -22,7 +22,6 @@ import { Keg } from './keg.model';
 })
 
 export class EditKegComponent {
-  // selectedKeg = null;
   @Input() childSelectedKeg: Keg;
   @Output() doneClickedSender = new EventEmitter();
 
