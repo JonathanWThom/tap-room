@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
       <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
       <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
       <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
+      <button class="btn btn-warning" (click)="sellBigGrowler(currentKeg)">Sell a Big Growler</button>
       <div *ngIf="currentKeg.alcoholContent >= 5">
       <h1>!!!</h1>
       </div>
@@ -56,19 +57,24 @@ export class AppComponent {
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
-  };
+  }
 
   finishedEditing() {
     this.selectedKeg = null;
-  };
+  }
 
   sellPint(currentKeg) {
     currentKeg.pints -= 1;
-  };
+  }
 
   sellGrowler(currentKeg) {
     currentKeg.pints -= 2;
   }
+
+  sellBigGrowler(currentKeg) {
+    currentKeg.pints -= 4;
+  }
+
 
   styleColor(currentKeg) {
     if (currentKeg.style === "Belgian Ale") {
