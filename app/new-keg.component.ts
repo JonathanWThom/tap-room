@@ -15,7 +15,15 @@ import { Keg } from './keg.model';
       <label>Alchol Content:</label>
       <input #newAlcoholContent>
       <label>Type:</label>
-      <input #newType>
+      <select #newType>
+        <option value="Belgian Ale">Belgian Ale</option>
+        <option value="Red Ale">Red Ale</option>
+        <option value="Lager">Lager</option>
+        <option value="IPA">IPA</option>
+        <option value="Stout">Stout</option>
+        <option value="Other">Other</option>
+      </select>
+
       <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newType.value); newName.value=''; newBrand.value=''; newPrice.value=''; newAlcoholContent.value=''; newType.value='';">Submit</button>
     </div>
   `
