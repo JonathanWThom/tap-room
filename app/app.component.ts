@@ -5,12 +5,15 @@ import { Component } from '@angular/core';
   template: `
   <div class="container">
     <h1>Tap Room</h1>
-    <ul>
-      <li *ngFor="let currentKeg of kegs">
-        {{currentKeg.name}}<br>
-        <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
-      </li>
-    </ul>
+    <div *ngFor="let currentKeg of kegs">
+      <h5>Name: {{currentKeg.name}}</h5>
+      <h5>Brand: {{currentKeg.brand}}</h5>
+      <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
+      <h5>Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
+      <h5>Style: {{currentKeg.style}}</h5>
+      <h5>Pints Remaining: {{currentKeg.pints}}</h5>
+      <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
+    </div>
     <hr>
     <div class="edit" *ngIf="selectedKeg">
       <h2>Edit Keg</h2>
