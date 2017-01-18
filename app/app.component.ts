@@ -16,6 +16,8 @@ import { Component } from '@angular/core';
       <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
       <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
       <button class="btn btn-warning" (click)="sellBigGrowler(currentKeg)">Sell a Big Growler</button>
+      <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
+      <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
       <div *ngIf="currentKeg.alcoholContent >= 5">
       <h1>!!!</h1>
       </div>
@@ -53,10 +55,23 @@ export class AppComponent {
     new Keg('Racer Five IPA', 'Racer 5', 5, 6.5, 'IPA')
   ];
 
+
   selectedKeg = null;
+
+  styleValue = null;
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
+  }
+
+  onSale(currentKeg) {
+    currentKeg.onSale = true;
+    currentKeg.price *= .8;
+  }
+
+  offSale(currentKeg) {
+    currentKeg.onSale = false;
+    currentKeg.price *= 1.25;
   }
 
   finishedEditing() {
@@ -77,7 +92,9 @@ export class AppComponent {
 
 
   styleColor(currentKeg) {
-    if (currentKeg.style === "Belgian Ale") {
+    if (currentKeg.onSale === true) {
+      return "sale";
+    } else if (currentKeg.style === "Belgian Ale") {
       return "belgian-ale";
     } else if (currentKeg.style === "Red Ale") {
       return "red-ale";
@@ -94,6 +111,7 @@ export class AppComponent {
 }
 
 export class Keg {
+  public onSale: boolean = false;
   public pints: number = 124;
   constructor(public name: string, public brand: string, public price: number, public alcoholContent: number, public style: string) { }
 }

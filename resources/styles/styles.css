@@ -22,3 +22,8 @@
 .other {
   background-color: #5AF700;
 }
+
+.sale {
+  background-color: green;
+  border: 3px solid darkgreen;
+}
