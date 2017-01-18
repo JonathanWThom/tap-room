@@ -14,6 +14,9 @@ import { Component } from '@angular/core';
       <h5>Pints Remaining: {{currentKeg.pints}}</h5>
       <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
       <button class="btn btn-success" (click)="buyPint(currentKeg)">Buy a Pint</button>
+      <div *ngIf="currentKeg.alcoholContent >= 5">
+      <h1>!!!</h1>
+      </div>
     </div>
     <hr>
     <h2>Low Kegs</h2>
