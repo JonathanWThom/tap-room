@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Keg } from './keg.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { Keg } from './keg.model';
     <h5>Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
     <h5>Style: {{currentKeg.style}}</h5>
     <h5>Pints Remaining: {{currentKeg.pints}}</h5>
-    <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
+    <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
     <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
     <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
     <button class="btn btn-warning" (click)="sellBigGrowler(currentKeg)">Sell a Big Growler</button>
@@ -32,7 +32,11 @@ import { Keg } from './keg.model';
 
 export class KegListComponent {
   @Input() childKegList: Keg[];
+  @Output() clickSender = new EventEmitter();
 
+  editButtonHasBeenClicked(kegToEdit: Keg) {
+    this.clickSender.emit(kegToEdit);
+  }
 
   onSale(currentKeg) {
     currentKeg.onSale = true;
