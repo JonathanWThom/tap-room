@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
       <h5>Style: {{currentKeg.style}}</h5>
       <h5>Pints Remaining: {{currentKeg.pints}}</h5>
       <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
+      <button class="btn btn-success" (click)="buyPint(currentKeg)">Buy a Pint</button>
     </div>
     <hr>
     <div class="edit" *ngIf="selectedKeg">
@@ -48,6 +49,10 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedKeg = null;
+  };
+
+  buyPint(currentKeg) {
+    currentKeg.pints -= 1;
   }
 }
 
