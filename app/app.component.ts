@@ -13,7 +13,8 @@ import { Component } from '@angular/core';
       <h5>Style: {{currentKeg.style}}</h5>
       <h5>Pints Remaining: {{currentKeg.pints}}</h5>
       <button class="btn" (click)="editKeg(currentKeg)">Edit</button>
-      <button class="btn btn-success" (click)="buyPint(currentKeg)">Buy a Pint</button>
+      <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
+      <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
       <div *ngIf="currentKeg.alcoholContent >= 5">
       <h1>!!!</h1>
       </div>
@@ -61,8 +62,12 @@ export class AppComponent {
     this.selectedKeg = null;
   };
 
-  buyPint(currentKeg) {
+  sellPint(currentKeg) {
     currentKeg.pints -= 1;
+  };
+
+  sellGrowler(currentKeg) {
+    currentKeg.pints -= 2;
   }
 
   styleColor(currentKeg) {
