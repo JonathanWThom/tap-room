@@ -17,11 +17,24 @@ export class HappyHourComponent implements OnInit  {
   @Output() happyHourClickSender = new EventEmitter();
   @Output() notHappyHourClickSender = new EventEmitter();
 
-  // happyTime: number = null;
-  //
-  // setHappyHour(time) {
-  //   this.happyTime = parseInt(time);
-  // }
+  happyTime: number = null;
+  currentTime: Date = new Date();
+
+  ngOnInit() {
+    this.autoHappyHour();
+  }
+
+  setHappyHour(time) {
+    this.happyTime = parseInt(time);
+  }
+
+  autoHappyHour() {
+    var that = this;
+    setInterval(function() {
+      this.currentTime = new Date();
+      that.checkHappyHour();
+    }, 1000);
+  }
 
   happyHour() {
     this.happyHourClickSender.emit();
@@ -29,34 +42,14 @@ export class HappyHourComponent implements OnInit  {
 
   notHappyHour() {
     this.notHappyHourClickSender.emit();
-    // for (let keg of this.childKegList) {
-    //   if (keg.onSale === true) {
-    //     keg.onSale = false;
-    //     keg.price *= 1.25;
-    //   }
-    // }
   }
-//
-// checkHappyHour() {
-//   if (this.currentTime.getHours() === this.happyTime) {
-//     this.happyHour();
-//   } else if (this.currentTime.getHours() !== this.happyTime){
-//     this.notHappyHour();
-//   }
-// }
-//
-// currentTime: Date = new Date();
-//
-//   autoHappyHour() {
-//     var that = this;
-//     setInterval(function() {
-//       this.currentTime = new Date();
-//       that.checkHappyHour();
-//     }, 1000);
-//   }
-//
-//   ngOnInit() {
-//     this.autoHappyHour();
-//   }
+
+  checkHappyHour() {
+    if (this.currentTime.getHours() === this.happyTime) {
+      this.happyHour();
+    } else if (this.currentTime.getHours() !== this.happyTime){
+      this.notHappyHour();
+    }
+  }
 
 }
