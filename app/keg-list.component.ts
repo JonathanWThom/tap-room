@@ -23,9 +23,10 @@ import { Keg } from './keg.model';
       <h5>Style: {{currentKeg.style}}</h5>
       <h5>Pints Remaining: {{currentKeg.pints}}</h5>
       <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
-      <button class="btn btn-success" (click)="sellPintClicked(currentKeg)">Sell a Pint</button>
+      <sell-beer [currentKeg]="currentKeg" (pintClickSender)="sellPintClicked($event)" (bigGrowlerClickSender)="sellBigGrowlerClicked($event)" (growlerClickSender)="sellGrowlerClicked($event)"></sell-beer>
+      <!--<button class="btn btn-success" (click)="sellPintClicked(currentKeg)">Sell a Pint</button>
       <button class="btn btn-info" (click)="sellGrowlerClicked(currentKeg)">Sell a Growler</button>
-      <button class="btn btn-warning" (click)="sellBigGrowlerClicked(currentKeg)">Sell a Big Growler</button>
+      <button class="btn btn-warning" (click)="sellBigGrowlerClicked(currentKeg)">Sell a Big Growler</button>-->
       <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
       <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
       <div *ngIf="currentKeg.alcoholContent >= 5">
