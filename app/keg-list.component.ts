@@ -5,6 +5,20 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <div class="row">
+
+    <div class="filter">
+      <label>Filter By</label>
+      <select class="form-control" (change)="onChange($event.target.value)">
+        <option value="allStyles" selected="selected">All Styles</option>
+        <option value="Belgian Ale">Belgian Ale</option>
+        <option value="Red Ale">Red Ale</option>
+        <option value="Lager">Lager</option>
+        <option value="Stout">Stout</option>
+        <option value="IPA">IPA</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
     <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="['col-sm-12', 'keg']">
 
       <div class="keg-header">
@@ -32,22 +46,12 @@ import { Keg } from './keg.model';
       </div>
 
     </div>
-    <label>Filter By</label>
-    <select (change)="onChange($event.target.value)">
-      <option value="allStyles" selected="selected">All Styles</option>
-      <option value="Belgian Ale">Belgian Ale</option>
-      <option value="Red Ale">Red Ale</option>
-      <option value="Lager">Lager</option>
-      <option value="Stout">Stout</option>
-      <option value="IPA">IPA</option>
-      <option value="Other">Other</option>
-    </select>
   </div>
 
-  <hr>
-  <h2>Low Kegs</h2>
-  <div *ngFor="let currentKeg of childKegList">
-    <h5 *ngIf="currentKeg.pints < 10">{{currentKeg.name}}. Pints remaining: {{currentKeg.pints}}</h5>
+  <div class="low-kegs">
+    <div *ngFor="let currentKeg of childKegList">
+      <h4 *ngIf="currentKeg.pints < 10">{{currentKeg.name}} only has {{currentKeg.pints}} pints remaining.</h4>
+    </div>
   </div>
   `
 })

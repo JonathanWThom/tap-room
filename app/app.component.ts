@@ -5,7 +5,9 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <div class="container">
+    <div class="intro">
     <h1 id="logo">Tap Room</h1>
+  </div>
     <div class="row">
       <div class="col-sm-7">
         <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pintClickSender)="sellPint($event)" (growlerClickSender)="sellGrowler($event)" (bigGrowlerClickSender)="sellBigGrowler($event)" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></keg-list>
