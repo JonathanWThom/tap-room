@@ -23,9 +23,9 @@ import { Keg } from './keg.model';
       <h5>Style: {{currentKeg.style}}</h5>
       <h5>Pints Remaining: {{currentKeg.pints}}</h5>
       <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
-      <button class="btn btn-success" (click)="sellPint(currentKeg)">Sell a Pint</button>
-      <button class="btn btn-info" (click)="sellGrowler(currentKeg)">Sell a Growler</button>
-      <button class="btn btn-warning" (click)="sellBigGrowler(currentKeg)">Sell a Big Growler</button>
+      <button class="btn btn-success" (click)="sellPintClicked(currentKeg)">Sell a Pint</button>
+      <button class="btn btn-info" (click)="sellGrowlerClicked(currentKeg)">Sell a Growler</button>
+      <button class="btn btn-warning" (click)="sellBigGrowlerClicked(currentKeg)">Sell a Big Growler</button>
       <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
       <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
       <div *ngIf="currentKeg.alcoholContent >= 5">
@@ -33,8 +33,6 @@ import { Keg } from './keg.model';
       </div>
     </div>
   </div>
-  <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
-  <button class="btn btn-danger" (click)="notHappyHour()">Stop Happy Hour</button>
 
   <hr>
   <h2>Low Kegs</h2>
@@ -46,10 +44,25 @@ import { Keg } from './keg.model';
 
 export class KegListComponent {
   @Input() childKegList: Keg[];
-  @Output() clickSender = new EventEmitter();
+  @Output() editClickSender = new EventEmitter();
+  @Output() pintClickSender = new EventEmitter();
+  @Output() growlerClickSender = new EventEmitter();
+  @Output() bigGrowlerClickSender = new EventEmitter();
+
+  sellPintClicked(currentKeg: Keg) {
+    this.pintClickSender.emit(currentKeg);
+  }
+
+  sellGrowlerClicked(currentKeg: Keg) {
+    this.growlerClickSender.emit(currentKeg);
+  }
+
+  sellBigGrowlerClicked(currentKeg: Keg) {
+    this.bigGrowlerClickSender.emit(currentKeg);
+  }
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
-    this.clickSender.emit(kegToEdit);
+    this.editClickSender.emit(kegToEdit);
   }
 
   filterByStyle: string = "allStyles";
@@ -69,17 +82,6 @@ export class KegListComponent {
   }
 
 
-  sellPint(currentKeg) {
-    currentKeg.pints -= 1;
-  }
-
-  sellGrowler(currentKeg) {
-    currentKeg.pints -= 2;
-  }
-
-  sellBigGrowler(currentKeg) {
-    currentKeg.pints -= 4;
-  }
 
   styleColor(currentKeg) {
     if (currentKeg.onSale === true) {

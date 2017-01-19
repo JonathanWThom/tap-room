@@ -4,7 +4,9 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'happy-hour',
   template: `
-    <label>Happy Hour Time</label>
+    <h4>Happy Hour</h4>
+    <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
+    <button class="btn btn-danger" (click)="notHappyHour()">Stop Happy Hour</button>
     <input #happyHourInput>
     <button (click)="setHappyHour(happyHourInput.value); checkHappyHour(); happyHourInput.value = ''" class="btn">What time?</button>
   `
