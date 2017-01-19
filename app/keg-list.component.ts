@@ -4,33 +4,33 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <label>Filter By</label>
-  <select (change)="onChange($event.target.value)">
-    <option value="allStyles" selected="selected">All Styles</option>
-    <option value="Belgian Ale">Belgian Ale</option>
-    <option value="Red Ale">Red Ale</option>
-    <option value="Lager">Lager</option>
-    <option value="Stout">Stout</option>
-    <option value="IPA">IPA</option>
-    <option value="Other">Other</option>
-  </select>
   <div class="row">
-    <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="['col-sm-4', 'well']">
-      <h5>Name: {{currentKeg.name}}</h5>
-      <h5>Brand: {{currentKeg.brand}}</h5>
-      <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
-      <h5>Alcohol Content: {{currentKeg.alcoholContent}}%</h5>
-      <h5>Style: {{currentKeg.style}}</h5>
-      <h5>Pints Remaining: {{currentKeg.pints}}</h5>
+    <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="['col-sm-12', 'keg']">
+
+      <p class="name">{{currentKeg.name}}</p>
+      <p class="brand">{{currentKeg.brand}}</p>
+      <p>Price: \${{currentKeg.price | number: '1.2-2'}}</p>
+      <p>Alcohol Content: {{currentKeg.alcoholContent}}%</p>
+      <p>Style: {{currentKeg.style}}</p>
+      <p>Pints Remaining: {{currentKeg.pints}}</p>
       <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
       <sell-beer [currentKeg]="currentKeg" (pintClickSender)="sellPintClicked($event)" (bigGrowlerClickSender)="sellBigGrowlerClicked($event)" (growlerClickSender)="sellGrowlerClicked($event)"></sell-beer>
       <on-sale [currentKeg]="currentKeg" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></on-sale>
-      <!--<button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
-      <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>-->
       <div *ngIf="currentKeg.alcoholContent >= 5">
       <h1>!!!</h1>
       </div>
+
     </div>
+    <label>Filter By</label>
+    <select (change)="onChange($event.target.value)">
+      <option value="allStyles" selected="selected">All Styles</option>
+      <option value="Belgian Ale">Belgian Ale</option>
+      <option value="Red Ale">Red Ale</option>
+      <option value="Lager">Lager</option>
+      <option value="Stout">Stout</option>
+      <option value="IPA">IPA</option>
+      <option value="Other">Other</option>
+    </select>
   </div>
 
   <hr>

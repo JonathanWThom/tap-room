@@ -6,11 +6,17 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
     <h1>Tap Room</h1>
-    <happy-hour [childKegList]="masterKegList" (happyHourClickSender)="happyHour()" (notHappyHourClickSender)="notHappyHour()"></happy-hour>
-    <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pintClickSender)="sellPint($event)" (growlerClickSender)="sellGrowler($event)" (bigGrowlerClickSender)="sellBigGrowler($event)" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></keg-list>
-    <hr>
-    <edit-keg [childSelectedKeg]="selectedKeg" (doneClickedSender)="finishedEditing()"></edit-keg>
-    <new-keg (newKegSender)="addKeg($event)"></new-keg>
+    <div class="row">
+      <div class="col-sm-8">
+        <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pintClickSender)="sellPint($event)" (growlerClickSender)="sellGrowler($event)" (bigGrowlerClickSender)="sellBigGrowler($event)" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></keg-list>
+      </div>
+      <div class="col-sm-4">
+        <happy-hour [childKegList]="masterKegList" (happyHourClickSender)="happyHour()" (notHappyHourClickSender)="notHappyHour()"></happy-hour>
+        <hr>
+        <edit-keg [childSelectedKeg]="selectedKeg" (doneClickedSender)="finishedEditing()"></edit-keg>
+        <new-keg (newKegSender)="addKeg($event)"></new-keg>
+      </div>
+    </div>
   </div>
   `
 })
