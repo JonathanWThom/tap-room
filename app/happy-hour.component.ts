@@ -19,6 +19,7 @@ export class HappyHourComponent implements OnInit  {
 
   happyTime: number = null;
   currentTime: Date = new Date();
+  happyHourSet: boolean = false;
 
   ngOnInit() {
     this.autoHappyHour();
@@ -37,6 +38,7 @@ export class HappyHourComponent implements OnInit  {
   }
 
   happyHour() {
+    this.happyHourSet = true;
     this.happyHourClickSender.emit();
   }
 
@@ -47,7 +49,7 @@ export class HappyHourComponent implements OnInit  {
   checkHappyHour() {
     if (this.currentTime.getHours() === this.happyTime) {
       this.happyHour();
-    } else if (this.currentTime.getHours() !== this.happyTime){
+    } else if (this.currentTime.getHours() !== this.happyTime && this.happyHourSet === false){
       this.notHappyHour();
     }
   }
