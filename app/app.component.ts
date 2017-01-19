@@ -28,7 +28,7 @@ export class AppComponent {
     new Keg('Wanderale', 'Wander Brewing', 5, 6, 'Belgian Ale'),
     new Keg('Kulshan Red Ale', 'Kulshan Brewing', 5, 5, 'Red Ale'),
     new Keg('Budweiser', 'Budweiser', 3, 2.5, 'Lager'),
-    new Keg('Guiness', 'Guiness', 6, 6, 'Stout'),
+    new Keg('Guinness', 'Guinness', 6, 6, 'Stout'),
     new Keg('Racer Five IPA', 'Racer 5', 5, 6.5, 'IPA')
   ];
 

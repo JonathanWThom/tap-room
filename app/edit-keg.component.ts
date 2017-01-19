@@ -4,19 +4,36 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'edit-keg',
   template: `
-  <div class="edit" *ngIf="childSelectedKeg">
-    <h2>Edit Keg</h2>
-    <label>Name</label>
-    <input [(ngModel)]="childSelectedKeg.name">
-    <label>Brand</label>
-    <input [(ngModel)]="childSelectedKeg.brand">
-    <label>Price</label>
-    <input [(ngModel)]="childSelectedKeg.price">
-    <label>Alcohol Content</label>
-    <input [(ngModel)]="childSelectedKeg.alcoholContent">
-    <label>Style</label>
-    <input [(ngModel)]="childSelectedKeg.style">
-    <button class="btn" (click)="doneButtonClicked()">Done</button>
+  <div class="form" *ngIf="childSelectedKeg">
+    <h3>Edit {{childSelectedKeg.name}}</h3>
+    <div class="form-input">
+      <label>Name:</label>
+      <input [(ngModel)]="childSelectedKeg.name">
+    </div>
+    <div class="form-input">
+      <label>Brand:</label>
+      <input [(ngModel)]="childSelectedKeg.brand">
+    </div>
+    <div class="form-input">
+      <label>Price:</label>
+      <input [(ngModel)]="childSelectedKeg.price">
+    </div>
+    <div class="form-input">
+      <label>Alcohol %:</label>
+      <input [(ngModel)]="childSelectedKeg.alcoholContent">
+    </div>
+    <div class="form-input">
+      <label>Style</label>
+      <select [(ngModel)]="childSelectedKeg.style" class="form-control">
+        <option value="Belgian Ale">Belgian Ale</option>
+        <option value="Red Ale">Red Ale</option>
+        <option value="Lager">Lager</option>
+        <option value="IPA">IPA</option>
+        <option value="Stout">Stout</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <button class="btn btn-block" (click)="doneButtonClicked()">Done</button>
   </div>
   `
 })

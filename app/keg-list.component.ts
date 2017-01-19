@@ -26,9 +26,9 @@ import { Keg } from './keg.model';
         <p class="brand">{{currentKeg.brand}}</p>
       </div>
       <div class="keg-details">
-        <p class="price">Price: \${{currentKeg.price | number: '1.2-2'}}</p>
-        <p class="alcohol">Alcohol Content: {{currentKeg.alcoholContent}}%</p>
-        <p class="style">Style: {{currentKeg.style}}</p>
+        <p class="price">Price: \${{currentKeg.price | number: '1.2-2'}}</p> |
+        <p class="alcohol">Alcohol Content: {{currentKeg.alcoholContent}}%</p> |
+        <p class="style">Style: {{currentKeg.style}}</p> | 
         <p class="pints">Pints Remaining: {{currentKeg.pints}}</p>
       </div>
 
