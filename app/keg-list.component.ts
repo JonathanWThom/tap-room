@@ -24,11 +24,9 @@ import { Keg } from './keg.model';
       <h5>Pints Remaining: {{currentKeg.pints}}</h5>
       <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
       <sell-beer [currentKeg]="currentKeg" (pintClickSender)="sellPintClicked($event)" (bigGrowlerClickSender)="sellBigGrowlerClicked($event)" (growlerClickSender)="sellGrowlerClicked($event)"></sell-beer>
-      <!--<button class="btn btn-success" (click)="sellPintClicked(currentKeg)">Sell a Pint</button>
-      <button class="btn btn-info" (click)="sellGrowlerClicked(currentKeg)">Sell a Growler</button>
-      <button class="btn btn-warning" (click)="sellBigGrowlerClicked(currentKeg)">Sell a Big Growler</button>-->
-      <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
-      <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
+      <on-sale [currentKeg]="currentKeg" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></on-sale>
+      <!--<button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
+      <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>-->
       <div *ngIf="currentKeg.alcoholContent >= 5">
       <h1>!!!</h1>
       </div>
@@ -49,6 +47,8 @@ export class KegListComponent {
   @Output() pintClickSender = new EventEmitter();
   @Output() growlerClickSender = new EventEmitter();
   @Output() bigGrowlerClickSender = new EventEmitter();
+  @Output() onSaleClickSender = new EventEmitter();
+  @Output() offSaleClickSender = new EventEmitter();
 
   sellPintClicked(currentKeg: Keg) {
     this.pintClickSender.emit(currentKeg);
@@ -66,23 +66,19 @@ export class KegListComponent {
     this.editClickSender.emit(kegToEdit);
   }
 
+  onSale(currentKeg: Keg) {
+    this.onSaleClickSender.emit(currentKeg);
+  }
+
+  offSale(currentKeg: Keg) {
+    this.offSaleClickSender.emit(currentKeg);
+  }
+
   filterByStyle: string = "allStyles";
 
   onChange(optionFromMenu) {
     this.filterByStyle = optionFromMenu;
   }
-
-  onSale(currentKeg) {
-    currentKeg.onSale = true;
-    currentKeg.price *= .8;
-  }
-
-  offSale(currentKeg) {
-    currentKeg.onSale = false;
-    currentKeg.price *= 1.25;
-  }
-
-
 
   styleColor(currentKeg) {
     if (currentKeg.onSale === true) {

@@ -7,6 +7,7 @@ import { EditKegComponent } from './edit-keg.component';
 import { NewKegComponent } from './new-keg.component';
 import { HappyHourComponent } from './happy-hour.component';
 import { SellBeerComponent } from './sell-beer.component';
+import { OnSaleComponent } from './on-sale.component';
 import { StylePipe } from './style.pipe';
 
 
@@ -22,6 +23,7 @@ import { StylePipe } from './style.pipe';
     NewKegComponent,
     HappyHourComponent,
     SellBeerComponent,
+    OnSaleComponent,
     StylePipe
    ],
   bootstrap:    [ AppComponent ]

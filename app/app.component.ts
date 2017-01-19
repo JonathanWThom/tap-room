@@ -7,7 +7,7 @@ import { Keg } from './keg.model';
   <div class="container">
     <h1>Tap Room</h1>
     <happy-hour [childKegList]="masterKegList" (happyHourClickSender)="happyHour()" (notHappyHourClickSender)="notHappyHour()"></happy-hour>
-    <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pintClickSender)="sellPint($event)" (growlerClickSender)="sellGrowler($event)" (bigGrowlerClickSender)="sellBigGrowler($event)"></keg-list>
+    <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pintClickSender)="sellPint($event)" (growlerClickSender)="sellGrowler($event)" (bigGrowlerClickSender)="sellBigGrowler($event)" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></keg-list>
     <hr>
     <edit-keg [childSelectedKeg]="selectedKeg" (doneClickedSender)="finishedEditing()"></edit-keg>
     <new-keg (newKegSender)="addKeg($event)"></new-keg>
@@ -27,7 +27,7 @@ export class AppComponent {
 
   notHappyHour() {
     for (let keg of this.masterKegList) {
-      if (keg.onSale === true) {
+      if (keg.onSale === true && keg.manualHappyHour === false) {
         keg.onSale = false;
         keg.price *= 1.25;
       }
@@ -66,5 +66,17 @@ export class AppComponent {
 
   sellBigGrowler(currentKeg) {
     currentKeg.pints -= 4;
+  }
+
+  onSale(currentKeg) {
+    currentKeg.onSale = true;
+    currentKeg.price *= .8;
+    currentKeg.manualHappyHour = true;
+  }
+
+  offSale(currentKeg) {
+    currentKeg.onSale = false;
+    currentKeg.price *= 1.25;
+    currentKeg.manualHappyHour = false;
   }
 }
