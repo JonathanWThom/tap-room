@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Keg } from './keg.model';
 
 @Component({
@@ -15,7 +15,7 @@ import { Keg } from './keg.model';
     <option value="Other">Other</option>
   </select>
   <div class="row">
-    <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="'col-sm-4'">
+    <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="['col-sm-4', 'well']">
       <h5>Name: {{currentKeg.name}}</h5>
       <h5>Brand: {{currentKeg.brand}}</h5>
       <h5>Price: \${{currentKeg.price | number: '1.2-2'}}</h5>
@@ -34,6 +34,7 @@ import { Keg } from './keg.model';
     </div>
   </div>
   <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
+  <button class="btn btn-danger" (click)="notHappyHour()">Stop Happy Hour</button>
   <hr>
   <h2>Low Kegs</h2>
   <div *ngFor="let currentKeg of kegs">
@@ -42,7 +43,7 @@ import { Keg } from './keg.model';
   `
 })
 
-export class KegListComponent {
+export class KegListComponent implements OnInit {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
 
@@ -71,11 +72,28 @@ export class KegListComponent {
       if (keg.onSale === false) {
         keg.onSale = true;
         keg.price *= 0.8;
-      } else {
+      }
+    }
+  }
+
+  notHappyHour() {
+    for (let keg of this.childKegList) {
+      if (keg.onSale === true) {
         keg.onSale = false;
         keg.price *= 1.25;
       }
     }
+  }
+
+  ngOnInit() {
+    var that = this;
+    setInterval(function() {
+      var currentTime = new Date();
+      var happyTime = 16;
+      if (currentTime.getHours() === happyTime) {
+        that.happyHour();
+      }
+    }, 1000);
   }
 
   sellPint(currentKeg) {

@@ -26,6 +26,7 @@ export class AppComponent {
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
+     // Logs Date. Unrelated to editKeg function
   }
 
   finishedEditing() {
