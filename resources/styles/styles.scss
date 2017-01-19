@@ -7,6 +7,43 @@
     background-color: darken($color, 20%);
   }
 }
+@mixin component {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  color: #333;
+  h3 {
+    margin: 0 0 20px 0;
+    text-align: center;
+  }
+  &-input {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+    width: 100%;
+    margin-bottom: 10px;
+    select {
+      width: 50%;
+      border: 1px solid #333;
+    }
+    input {
+      width: 50%;
+      border: 1px solid #333;
+      height: 35px;
+      border-radius: 5px;
+      padding: 0 10px;
+    }
+  }
+  .btn {
+    @include button(#9ed6ab)
+  }
+}
+
+.happyTime {
+  margin-top: 20px;
+}
 
 body {
   background-image: url('../../resources/img/wood.jpg');
@@ -16,24 +53,34 @@ body {
 }
 
 .form {
-  width: 100%;
-  &-input {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.1em;
+  @include component;
+}
+
+.happy-hour {
+  @include component;
+  &-buttons {
     width: 100%;
-    margin-bottom: 10px;
-    select {
-      width: 50%;
-    }
-    input {
-      width: 50%;
-      height: 35px;
-      border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    .btn:nth-of-type(2) {
+      @include button(#ff5744);
     }
   }
-  .btn {
-    @include button(#9ed6ab)
+  &-time {
+    display: flex;
+    justify-content: center;
+    input {
+      border-radius: 5px 0 0 5px;
+      border: 2px solid black;
+      border-right: 0;
+      padding: 0 10px;
+    }
+    .btn {
+      @include button(#9ed5d6);
+      border-radius: 0 5px 5px 0;
+      border-left: 0;
+    }
   }
 }
 

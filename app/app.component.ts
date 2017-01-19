@@ -12,7 +12,6 @@ import { Keg } from './keg.model';
       </div>
       <div class="col-sm-4 col-sm-offset-1">
         <happy-hour [childKegList]="masterKegList" (happyHourClickSender)="happyHour()" (notHappyHourClickSender)="notHappyHour()"></happy-hour>
-        <hr>
         <edit-keg [childSelectedKeg]="selectedKeg" (doneClickedSender)="finishedEditing()"></edit-keg>
         <new-keg (newKegSender)="addKeg($event)"></new-keg>
       </div>
