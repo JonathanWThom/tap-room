@@ -7,17 +7,28 @@ import { Keg } from './keg.model';
   <div class="row">
     <div *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="styleColor(currentKeg)" [ngClass]="['col-sm-12', 'keg']">
 
-      <p class="name">{{currentKeg.name}}</p>
-      <p class="brand">{{currentKeg.brand}}</p>
-      <p>Price: \${{currentKeg.price | number: '1.2-2'}}</p>
-      <p>Alcohol Content: {{currentKeg.alcoholContent}}%</p>
-      <p>Style: {{currentKeg.style}}</p>
-      <p>Pints Remaining: {{currentKeg.pints}}</p>
-      <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
-      <sell-beer [currentKeg]="currentKeg" (pintClickSender)="sellPintClicked($event)" (bigGrowlerClickSender)="sellBigGrowlerClicked($event)" (growlerClickSender)="sellGrowlerClicked($event)"></sell-beer>
-      <on-sale [currentKeg]="currentKeg" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></on-sale>
-      <div *ngIf="currentKeg.alcoholContent >= 5">
-      <h1>!!!</h1>
+      <div class="keg-header">
+        <p class="name">{{currentKeg.name}}</p>
+        <p class="brand">{{currentKeg.brand}}</p>
+      </div>
+      <div class="keg-details">
+        <p class="price">Price: \${{currentKeg.price | number: '1.2-2'}}</p>
+        <p class="alcohol">Alcohol Content: {{currentKeg.alcoholContent}}%</p>
+        <p class="style">Style: {{currentKeg.style}}</p>
+        <p class="pints">Pints Remaining: {{currentKeg.pints}}</p>
+      </div>
+
+      <div class="keg-sell">
+        <sell-beer [currentKeg]="currentKeg" (pintClickSender)="sellPintClicked($event)" (bigGrowlerClickSender)="sellBigGrowlerClicked($event)" (growlerClickSender)="sellGrowlerClicked($event)"></sell-beer>
+      </div>
+
+      <div class="keg-buttons">
+        <button class="btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit</button>
+        <on-sale [currentKeg]="currentKeg" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></on-sale>
+      </div>
+
+      <div *ngIf="currentKeg.alcoholContent >= 5" class="alcohol-alert">
+      <img src="../../resources/img/drunk.png" alt="High Alcohol Content!">
       </div>
 
     </div>

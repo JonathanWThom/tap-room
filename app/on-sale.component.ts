@@ -4,8 +4,8 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'on-sale',
   template: `
-  <button *ngIf="currentKeg.onSale === false" class="btn btn-danger" (click)="onSale(currentKeg)">Put on Sale</button>
-  <button *ngIf="currentKeg.onSale === true" class="btn btn-danger" (click)="offSale(currentKeg)">Take off Sale</button>
+  <button *ngIf="currentKeg.onSale === false" class="btn" (click)="onSale(currentKeg)">Put on Sale</button>
+  <button *ngIf="currentKeg.onSale === true" class="btn" (click)="offSale(currentKeg)">Take off Sale</button>
   `
 })
 
