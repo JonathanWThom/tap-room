@@ -36,11 +36,11 @@ import { Keg } from './keg.model';
   <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
   <button class="btn btn-danger" (click)="notHappyHour()">Stop Happy Hour</button>
   <label>Happy Hour Time</label>
-  <input #happyHour>
+  <input #happyHourInput>
   <button (click)="setHappyHour(happyHour.value)" class="btn">What time?</button>
   <hr>
   <h2>Low Kegs</h2>
-  <div *ngFor="let currentKeg of kegs">
+  <div *ngFor="let currentKeg of childKegList">
     <h5 *ngIf="currentKeg.pints < 10">{{currentKeg.name}}. Pints remaining: {{currentKeg.pints}}</h5>
   </div>
   `
