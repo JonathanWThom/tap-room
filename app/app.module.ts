@@ -5,6 +5,7 @@ import { FormsModule }  from '@angular/forms';
 import { KegListComponent } from './keg-list.component';
 import { EditKegComponent } from './edit-keg.component';
 import { NewKegComponent } from './new-keg.component';
+import { HappyHourComponent } from './happy-hour.component';
 import { StylePipe } from './style.pipe';
 
 
@@ -18,6 +19,7 @@ import { StylePipe } from './style.pipe';
     KegListComponent,
     EditKegComponent,
     NewKegComponent,
+    HappyHourComponent,
     StylePipe
    ],
   bootstrap:    [ AppComponent ]

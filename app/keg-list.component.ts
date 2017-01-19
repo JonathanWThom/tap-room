@@ -35,9 +35,7 @@ import { Keg } from './keg.model';
   </div>
   <button class="btn btn-success" (click)="happyHour()">Happy Hour</button>
   <button class="btn btn-danger" (click)="notHappyHour()">Stop Happy Hour</button>
-  <label>Happy Hour Time</label>
-  <input #happyHourInput>
-  <button (click)="setHappyHour(happyHourInput.value); checkHappyHour()" class="btn">What time?</button>
+
   <hr>
   <h2>Low Kegs</h2>
   <div *ngFor="let currentKeg of childKegList">
@@ -46,11 +44,9 @@ import { Keg } from './keg.model';
   `
 })
 
-export class KegListComponent implements OnInit {
+export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
-
-  happyTime: number = 9;
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
@@ -72,51 +68,6 @@ export class KegListComponent implements OnInit {
     currentKeg.price *= 1.25;
   }
 
-  setHappyHour(time) {
-    this.happyTime = parseInt(time);
-    // this.autoHappyHour();
-  }
-
-  happyHour() {
-    for (let keg of this.childKegList) {
-      if (keg.onSale === false) {
-        keg.onSale = true;
-        keg.price *= 0.8;
-      }
-    }
-  }
-
-  notHappyHour() {
-    for (let keg of this.childKegList) {
-      if (keg.onSale === true) {
-        keg.onSale = false;
-        keg.price *= 1.25;
-      }
-    }
-  }
-
-checkHappyHour() {
-  console.log('check happy hour');
-  if (this.currentTime.getHours() === this.happyTime) {
-    this.happyHour();
-  } else if (this.currentTime.getHours() !== this.happyTime){
-    this.notHappyHour();
-  }
-}
-
-currentTime: Date = new Date();
-
-  autoHappyHour() {
-    var that = this;
-    setInterval(function() {
-      this.currentTime = new Date();
-      that.checkHappyHour();
-    }, 1000);
-  }
-
-  ngOnInit() {
-    this.autoHappyHour();
-  }
 
   sellPint(currentKeg) {
     currentKeg.pints -= 1;
