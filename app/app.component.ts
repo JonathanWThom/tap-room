@@ -7,10 +7,10 @@ import { Keg } from './keg.model';
   <div class="container">
     <h1 id="logo">Tap Room</h1>
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-7">
         <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pintClickSender)="sellPint($event)" (growlerClickSender)="sellGrowler($event)" (bigGrowlerClickSender)="sellBigGrowler($event)" (onSaleClickSender)="onSale($event)" (offSaleClickSender)="offSale($event)"></keg-list>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-sm-offset-1">
         <happy-hour [childKegList]="masterKegList" (happyHourClickSender)="happyHour()" (notHappyHourClickSender)="notHappyHour()"></happy-hour>
         <hr>
         <edit-keg [childSelectedKeg]="selectedKeg" (doneClickedSender)="finishedEditing()"></edit-keg>

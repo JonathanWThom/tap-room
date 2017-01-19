@@ -8,6 +8,34 @@
   }
 }
 
+body {
+  background-image: url('../../resources/img/wood.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.form {
+  width: 100%;
+  &-input {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+    width: 100%;
+    margin-bottom: 10px;
+    select {
+      width: 50%;
+    }
+    input {
+      width: 50%;
+      height: 35px;
+      border-radius: 5px;
+    }
+  }
+  .btn {
+    @include button(#9ed6ab)
+  }
+}
 
 #logo {
   text-align: center;

@@ -5,26 +5,36 @@ import { Keg } from './keg.model';
   selector: 'new-keg',
   template:`
     <h3>New Keg</h3>
-    <div>
-      <label>Name:</label>
-      <input #newName>
-      <label>Brand:</label>
-      <input #newBrand>
-      <label>Price:</label>
-      <input #newPrice>
-      <label>Alchol Content:</label>
-      <input #newAlcoholContent>
-      <label>Type:</label>
-      <select #newType>
-        <option value="Belgian Ale">Belgian Ale</option>
-        <option value="Red Ale">Red Ale</option>
-        <option value="Lager">Lager</option>
-        <option value="IPA">IPA</option>
-        <option value="Stout">Stout</option>
-        <option value="Other">Other</option>
-      </select>
+    <div class="form">
+      <div class="form-input">
+        <label>Name:</label>
+        <input #newName>
+      </div>
+      <div class="form-input">
+        <label>Brand:</label>
+        <input #newBrand>
+      </div>
+      <div class="form-input">
+        <label>Price:</label>
+        <input #newPrice>
+      </div>
+      <div class="form-input">
+        <label>Alcohol %:</label>
+        <input #newAlcoholContent>
+      </div>
+      <div class="form-input form-group">
+        <label>Type:</label>
+        <select #newType class="form-control">
+          <option value="Belgian Ale">Belgian Ale</option>
+          <option value="Red Ale">Red Ale</option>
+          <option value="Lager">Lager</option>
+          <option value="IPA">IPA</option>
+          <option value="Stout">Stout</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-      <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newType.value); newName.value=''; newBrand.value=''; newPrice.value=''; newAlcoholContent.value=''; newType.value='';">Submit</button>
+      <button class="btn btn-block" (click)="submitForm(newName.value, newBrand.value, newPrice.value, newAlcoholContent.value, newType.value); newName.value=''; newBrand.value=''; newPrice.value=''; newAlcoholContent.value=''; newType.value='';">Submit</button>
     </div>
   `
 })
