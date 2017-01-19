@@ -37,7 +37,7 @@ import { Keg } from './keg.model';
   <button class="btn btn-danger" (click)="notHappyHour()">Stop Happy Hour</button>
   <label>Happy Hour Time</label>
   <input #happyHourInput>
-  <button (click)="setHappyHour(happyHour.value)" class="btn">What time?</button>
+  <button (click)="setHappyHour(happyHourInput.value)" class="btn">What time?</button>
   <hr>
   <h2>Low Kegs</h2>
   <div *ngFor="let currentKeg of childKegList">
@@ -50,7 +50,7 @@ export class KegListComponent implements OnInit {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
 
-  happyTime: number = 16;
+  happyTime: number = 8;
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
@@ -100,8 +100,13 @@ export class KegListComponent implements OnInit {
     setInterval(function() {
       var currentTime = new Date();
       // var happyTime = 16;
+      // console.log(currentTime.getHours());
+      console.log(that.happyTime);
       if (currentTime.getHours() === that.happyTime) {
         that.happyHour();
+        console.log('we made it!')
+      } else {
+        that.notHappyHour();
       }
     }, 1000);
   }
