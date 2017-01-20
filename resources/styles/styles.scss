@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Volkhov:400,700');
+
 @mixin button($color) {
   border: 2px solid darken($color, 50%);
   background-color: $color;
@@ -51,6 +53,11 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Volkhov', serif;
 }
 
 .form {
@@ -116,6 +123,7 @@ body {
     text-align: center;
     width: 80%;
     margin: 0 auto;
+    font-family: 'Volkhov', serif;
   }
   &-details {
     display: flex;
